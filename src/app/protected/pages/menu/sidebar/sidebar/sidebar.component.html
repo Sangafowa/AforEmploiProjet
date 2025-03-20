@@ -1,0 +1,21 @@
+<div class="sidebar">
+  <div class="logo">
+    <img src="img2/afor-logo.jpeg" alt="Logo">
+    <h3>AFOR Emploi</h3>
+    <p>AGENCE FONCIERE RURALE</p>
+  </div>
+
+  <nav>
+    <ul>
+      <li [class.active]="activeRoute === 'dashboard'" (click)="navigate('dashboard')">
+        <i class="fas fa-chart-line"></i> Tableau de bord
+      </li>
+      <li [class.active]="activeRoute === 'list-employe'" (click)="navigate('list-employe')">
+        <i class="fas fa-users"></i> Gestion des employés
+      </li>
+      <li [class.active]="activeRoute === 'parametres'" (click)="navigate('parametres')">
+        <i class="fas fa-chart-pie"></i> Paramètres
+      </li>
+    </ul>
+  </nav>
+</div>

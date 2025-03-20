@@ -1,0 +1,50 @@
+<div class="list-employe">
+  <h2>Gestion des employés</h2>
+
+  <button class="btn btn-success" (click)="ajouterEmploye()">
+    <i class="fas fa-plus"></i> Nouvel employé
+  </button>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Région</th>
+      <th>Département</th>
+      <th>Sous-préfecture</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Genre</th>
+      <th>Âge</th>
+      <th>Poste</th>
+      <th>Type</th>
+      <th>Statut contrat</th>
+      <th>Durée contrat</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employe of employes">
+      <td>{{ employe.region }}</td>
+      <td>{{ employe.departement }}</td>
+      <td>{{ employe.sousPrefecture }}</td>
+      <td>{{ employe.nom }}</td>
+      <td>{{ employe.prenom }}</td>
+      <td>{{ employe.genre }}</td>
+      <td>{{ employe.age }}</td>
+      <td>{{ employe.poste }}</td>
+      <td>{{ employe.type }}</td>
+      <td>{{ employe.statutContrat }}</td>
+      <td>{{ employe.dureeContrat }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="modifierEmploye(employe)">✏️</button>
+        <button class="btn btn-danger" (click)="supprimerEmploye(employe)">🗑️</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="export-buttons">
+    <button class="btn btn-success">📄 Exporter en PDF</button>
+    <button class="btn btn-success">📊 Exporter en Excel</button>
+  </div>
+</div>

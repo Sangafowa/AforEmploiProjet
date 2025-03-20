@@ -1,0 +1,79 @@
+<div class="login-container">
+  <!-- En-tête -->
+  <div class="header">
+    <img src="/img2/afor-logo.jpeg" alt="Logo AFOR" class="logo">
+    <h2>Système de Gestion du Personnel des Projets</h2>
+  </div>
+
+  <!-- Sélecteur de mode -->
+  <div class="mode-selector">
+    <button mat-raised-button (click)="selectMode('standard')" [class.active]="isStandardMode">Mode Standard</button>
+    <button mat-raised-button (click)="selectMode('admin')" [class.active]="!isStandardMode">Mode Admin</button>
+  </div>
+
+  <!-- Formulaire de connexion -->
+  <form [formGroup]="loginForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Sélectionner un projet</mat-label>
+      <mat-select formControlName="project">
+        <mat-option *ngFor="let project of projects" [value]="project">
+          {{ project }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="loginForm.get('project')?.hasError('required') && loginForm.get('project')?.touched">
+        Veuillez sélectionner un projet
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type d'acteur</mat-label>
+      <mat-select formControlName="actorType">
+        <mat-option *ngFor="let type of actorTypes" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="loginForm.get('actorType')?.hasError('required') && loginForm.get('actorType')?.touched">
+        Veuillez sélectionner un type d'acteur
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sélectionner un acteur</mat-label>
+      <mat-select formControlName="actor">
+        <mat-option *ngFor="let actor of filteredActors" [value]="actor">
+          {{ actor }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="loginForm.get('actor')?.hasError('required') && loginForm.get('actor')?.touched">
+        Veuillez sélectionner un acteur
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+        L'email est requis
+      </mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+        Veuillez saisir une adresse email valide
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+        Le mot de passe est requis
+      </mat-error>
+    </mat-form-field>
+
+    <div class="login-info" *ngIf="!isStandardMode">
+      <small>Pour l'admin : utilisez "admin&#64;afor.com" et le mot de passe "admin123"</small>
+    </div>
+
+    <button mat-raised-button color="primary" class="custom-button" [disabled]="!loginForm.valid" (click)="onSubmit()">
+      SE CONNECTER
+    </button>
+  </form>
+</div>

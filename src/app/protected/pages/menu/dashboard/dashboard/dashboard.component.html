@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <h2>Tableau de bord</h2>
+
+  <div class="stats">
+    <div class="stat-card">
+      <i class="fas fa-users"></i>
+      <div>
+        <h3>{{ totalEmployes }}</h3>
+        <p>Total Employés</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <i class="fas fa-user-tie"></i>
+      <div>
+        <h3>{{ totalSuperviseurs }}</h3>
+        <p>Superviseurs</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <i class="fas fa-chart-line"></i>
+      <div>
+        <h3>{{ tauxCroissance }}%</h3>
+        <p>Croissance</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart">
+      <h3>Répartition des employés</h3>
+      <canvas id="repartitionChart"></canvas>
+    </div>
+
+    <div class="chart">
+      <h3>Évolution des effectifs</h3>
+      <canvas id="evolutionChart"></canvas>
+    </div>
+  </div>
+</div>

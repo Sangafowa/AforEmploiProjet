@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-body {
+  background: url('assets/img/background.jpeg') no-repeat center center/cover;
+  backdrop-filter: blur(10px);
+}
+// Style du tableau
+.afor-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+  th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+    text-align: left;
+  }
+
+  th {
+    background: #198754;
+    color: white;
+  }
+
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .content-area {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .sidebar {
+    display: none; // Cacher la sidebar sur mobile
+  }
+}
