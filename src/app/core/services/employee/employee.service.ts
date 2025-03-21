@@ -1,28 +1,66 @@
 import { Injectable } from '@angular/core';
-import {Employee} from '../../models/employee.model';
+import { Employee } from '../../models/employee.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private employees: Employee[] = [
-    {
-      id: 1, region: 'Nord', departement: 'Yopougon', sousPrefecture: 'Anyama',
-      nom: 'Doe', prenom: 'John', genre: 'Homme', age: 30,
-      poste: 'Développeur', type: 'CDI', statutContrat: 'Actif', dureeContrat: 'Indéterminé'
-    },
-    {
-      id: 2, region: 'Sud', departement: 'Abidjan', sousPrefecture: 'Treichville',
-      nom: 'Dupont', prenom: 'Marie', genre: 'Femme', age: 28,
-      poste: 'Designer', type: 'CDD', statutContrat: 'Actif', dureeContrat: '12 mois'
-    }
-  ];
+  private employees: Employee[] = [];
+
+  constructor() {
+    // Initialize with some dummy data
+    this.employees = [
+      {
+        id: '1',
+        region: 'TCHOLOGO',
+        departement: 'Département 1',
+        sousPrefecture: 'Sous-préfecture 1',
+        nom: 'Diallo',
+        prenom: 'Fatou',
+        genre: 'Féminin',
+        age: 28,
+        poste: 'Assistante Administrative',
+        type: 'Employé',
+        statutContrat: 'Actif',
+        dureeContrat: '12 mois'
+      },
+      {
+        id: '2',
+        region: 'TCHOLOGO',
+        departement: 'Département 2',
+        sousPrefecture: 'Sous-préfecture 2',
+        nom: 'Koné',
+        prenom: 'Amadou',
+        genre: 'Masculin',
+        age: 35,
+        poste: 'Technicien',
+        type: 'Employé',
+        statutContrat: 'Actif',
+        dureeContrat: '24 mois'
+      }
+    ];
+  }
 
   getEmployees(): Employee[] {
     return this.employees;
   }
 
-  deleteEmployee(id: number) {
+  getEmployeeById(id: string): Employee | undefined {
+    return this.employees.find(emp => emp.id === id);
+  }
+
+  addEmployee(employee: Employee): void {
+    this.employees.push(employee);
+  }
+
+  updateEmployee(updatedEmployee: Employee): void {
+    const index = this.employees.findIndex(emp => emp.id === updatedEmployee.id);
+    if (index !== -1) {
+      this.employees[index] = updatedEmployee;
+    }
+  }
+
+  deleteEmployee(id: string): void {
     this.employees = this.employees.filter(emp => emp.id !== id);
   }
 }

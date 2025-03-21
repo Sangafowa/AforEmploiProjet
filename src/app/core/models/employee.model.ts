@@ -1,5 +1,5 @@
 export interface Employee {
-  id: number;
+  id: string;
   region: string;
   departement: string;
   sousPrefecture: string;

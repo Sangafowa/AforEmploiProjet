@@ -1,0 +1,182 @@
+<!-- employe-modal.component.html -->
+<div class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Nouvel employé</h2>
+      <button class="close-btn" (click)="cancel()">×</button>
+    </div>
+
+    <div class="modal-steps">
+      <div class="step" [class.active]="currentStep === 1">
+        1. Localisation
+      </div>
+      <div class="step" [class.active]="currentStep === 2">
+        2. Informations personnelles
+      </div>
+      <div class="step" [class.active]="currentStep === 3">
+        3. Contrat
+      </div>
+    </div>
+
+    <form [formGroup]="employeeForm">
+      <!-- Step 1: Localisation -->
+      <div class="form-step" *ngIf="currentStep === 1">
+        <h3>Localisation</h3>
+
+        <div class="form-group">
+          <label>Lieu de travail</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" formControlName="lieuTravail" value="siege">
+              Au siège
+            </label>
+            <label class="radio-label">
+              <input type="radio" formControlName="lieuTravail" value="pays">
+              À l'intérieur du pays
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Région</label>
+          <select formControlName="region">
+            <option value="" disabled selected>Sélectionnez</option>
+            <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Département</label>
+          <select formControlName="departement">
+            <option value="" disabled selected>Sélectionnez</option>
+            <option *ngFor="let departement of departements" [value]="departement">{{departement}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Sous-préfecture</label>
+          <select formControlName="sousPrefecture">
+            <option value="" disabled selected>Sélectionnez une sous-préfecture</option>
+            <option *ngFor="let sousPrefecture of sousPrefectures" [value]="sousPrefecture">{{sousPrefecture}}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 2: Informations personnelles -->
+      <div class="form-step" *ngIf="currentStep === 2">
+        <h3>Informations personnelles</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" formControlName="nom">
+          </div>
+
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" formControlName="prenom">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date de naissance</label>
+            <input type="date" formControlName="dateNaissance" placeholder="jj/mm/aaaa">
+          </div>
+
+          <div class="form-group">
+            <label>Contact</label>
+            <input type="text" formControlName="contact" placeholder="Ex: 0123456789">
+            <small>Format: 10 chiffres commençant par 01, 05 ou 07</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Genre</label>
+            <select formControlName="genre">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Type de personne</label>
+            <select formControlName="typePersonne">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option *ngFor="let type of typesPersonne" [value]="type">{{type}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Diplôme</label>
+            <select formControlName="diplome">
+              <option value="" disabled selected>Sélectionnez un diplôme</option>
+              <option *ngFor="let diplome of diplomes" [value]="diplome">{{diplome}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>École</label>
+            <select formControlName="ecole">
+              <option value="" disabled selected>Sélectionnez une école</option>
+              <option *ngFor="let ecole of ecoles" [value]="ecole">{{ecole}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Contrat -->
+      <div class="form-step" *ngIf="currentStep === 3">
+        <h3>Contrat</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Catégorie</label>
+            <select formControlName="categorie">
+              <option value="" disabled selected>Sélectionnez une catégorie</option>
+              <option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Poste</label>
+            <select formControlName="poste">
+              <option value="" disabled selected>Sélectionnez un poste</option>
+              <option *ngFor="let poste of postes" [value]="poste">{{poste}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Durée (mois)</label>
+            <input type="number" formControlName="duree">
+          </div>
+
+          <div class="form-group">
+            <label>Date de début</label>
+            <input type="date" formControlName="dateDebut">
+          </div>
+
+          <div class="form-group">
+            <label>Date de fin</label>
+            <input type="date" formControlName="dateFin">
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="cancel()">Annuler</button>
+
+      <button class="btn btn-secondary" *ngIf="currentStep > 1" (click)="prevStep()">Précédent</button>
+
+      <button class="btn btn-primary" *ngIf="currentStep < 3" (click)="nextStep()">Suivant</button>
+
+      <button class="btn btn-success" *ngIf="currentStep === 3" (click)="save()">Enregistrer</button>
+    </div>
+  </div>
+</div>

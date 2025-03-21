@@ -1,8 +1,9 @@
+<!-- list-employe.component.html -->
 <div class="list-employe">
   <h2>Gestion des employés</h2>
 
   <button class="btn btn-success" (click)="ajouterEmploye()">
-    <i class="fas fa-plus"></i> + Nouvel employé
+    <i class="fas fa-plus"></i> Nouvel employé
   </button>
 
   <table>
@@ -36,15 +37,26 @@
       <td>{{ employe.statutContrat }}</td>
       <td>{{ employe.dureeContrat }}</td>
       <td>
-        <button class="btn btn-warning" (click)="modifierEmploye(employe)">✏️</button>
-        <button class="btn btn-danger" (click)="supprimerEmploye(employe)">🗑️</button>
+        <button (click)="modifierEmploye(employe)">✏️</button>
+        <button (click)="supprimerEmploye(employe)">🗑️</button>
       </td>
     </tr>
     </tbody>
   </table>
 
   <div class="export-buttons">
-    <button class="btn btn-success">📄 Exporter en PDF</button>
-    <button class="btn btn-success">📊 Exporter en Excel</button>
+    <button class="btn btn-success" (click)="exportToPDF()">
+      <i class="fas fa-file-pdf"></i> Exporter en PDF
+    </button>
+    <button class="btn btn-success" (click)="exportToExcel()">
+      <i class="fas fa-file-excel"></i> Exporter en Excel
+    </button>
   </div>
+
+  <!-- Employee Modal -->
+  <app-employe-modal
+    *ngIf="showModal"
+    (closeModal)="closeModal()"
+    (saveEmployee)="saveEmployee($event)">
+  </app-employe-modal>
 </div>
