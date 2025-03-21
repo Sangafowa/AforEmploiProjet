@@ -1,0 +1,23 @@
+<div class="navbar">
+  <div class="date-container">
+    <mat-icon>schedule</mat-icon>
+    <div class="date">
+      {{ currentDate | date: 'EEEE d MMMM y HH:mm' }}
+    </div>
+  </div>
+  <div class="user-menu">
+    <span class="username">CGEDS</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="user-icon">
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="changePassword()">
+        <mat-icon class="menu-icon">key</mat-icon> Changer le mot de passe
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon class="menu-icon">exit_to_app</mat-icon> Déconnexion
+      </button>
+    </mat-menu>
+  </div>
+</div>

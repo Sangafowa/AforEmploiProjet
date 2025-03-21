@@ -1,11 +1,9 @@
 <div class="app-container">
-  <app-sidebar *ngIf="!isLoginPage()"></app-sidebar> <!-- Ajouter *ngIf -->
+  <app-sidebar *ngIf="!isLoginPage()"></app-sidebar> <!-- Sidebar -->
   <div class="content-area">
-    <div class="top-bar" *ngIf="!isLoginPage()"> <!-- Optionnel : cacher aussi la top-bar -->
-      <div class="date">Mercredi 19 Mars 2025 14:12</div>
-      <div class="user-info">CGEDS</div>
+    <app-navbar *ngIf="!isLoginPage()"></app-navbar> <!-- Navbar ajoutée ici -->
+    <div class="top-bar" *ngIf="!isLoginPage()">
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet> <!-- Contenu des pages -->
   </div>
 </div>
-

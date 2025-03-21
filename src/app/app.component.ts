@@ -1,13 +1,14 @@
 import { Component, Renderer2 } from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router'; // Ajouter Router
 import { SidebarComponent } from './protected/pages/menu/sidebar/sidebar/sidebar.component';
-import { CommonModule } from '@angular/common'; // Ajouter CommonModule
+import { CommonModule } from '@angular/common';
+import {NavbarComponent} from './protected/pages/menu/navbar/navbar/navbar.component'; // Ajouter CommonModule
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, CommonModule,RouterLink,       // Ajouté
-    RouterLinkActive,], // Ajouter CommonModule
+  imports: [RouterOutlet, SidebarComponent, CommonModule, RouterLink,       // Ajouté
+    RouterLinkActive, NavbarComponent,], // Ajouter CommonModule
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
