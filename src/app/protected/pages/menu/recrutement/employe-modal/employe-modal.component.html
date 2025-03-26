@@ -37,28 +37,31 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Région</label>
-          <select formControlName="region">
-            <option value="" disabled selected>Sélectionnez</option>
-            <option *ngFor="let region of regions" [value]="region">{{region}}</option>
-          </select>
-        </div>
+        <!-- N'afficher ces champs que si "pays" est sélectionné -->
+        <div *ngIf="employeeForm.get('lieuTravail')?.value === 'pays'">
+          <div class="form-group">
+            <label>Région</label>
+            <select formControlName="region">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label>Département</label>
-          <select formControlName="departement">
-            <option value="" disabled selected>Sélectionnez</option>
-            <option *ngFor="let departement of departements" [value]="departement">{{departement}}</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label>Département</label>
+            <select formControlName="departement">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option *ngFor="let departement of departements" [value]="departement">{{departement}}</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label>Sous-préfecture</label>
-          <select formControlName="sousPrefecture">
-            <option value="" disabled selected>Sélectionnez une sous-préfecture</option>
-            <option *ngFor="let sousPrefecture of sousPrefectures" [value]="sousPrefecture">{{sousPrefecture}}</option>
-          </select>
+          <div class="form-group">
+            <label>Sous-préfecture</label>
+            <select formControlName="sousPrefecture">
+              <option value="" disabled selected>Sélectionnez une sous-préfecture</option>
+              <option *ngFor="let sousPrefecture of sousPrefectures" [value]="sousPrefecture">{{sousPrefecture}}</option>
+            </select>
+          </div>
         </div>
       </div>
 

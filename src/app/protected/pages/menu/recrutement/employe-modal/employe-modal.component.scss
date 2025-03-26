@@ -119,6 +119,11 @@
   .form-group {
     flex: 1;
   }
+
+  /* Ajout de marge spécifique entre nom et prénom */
+  .form-group + .form-group {
+    margin-left: 20px;
+  }
 }
 
 .radio-group {
@@ -135,6 +140,17 @@
   input {
     width: auto;
   }
+}
+
+/* Masquer les listes déroulantes lorsque "Au siège" est sélectionné */
+input[type="radio"][value="siege"]:checked ~ .form-group,
+input[type="radio"][value="siege"]:checked ~ .form-step .form-group:not(:first-child) {
+  display: none;
+}
+
+/* Alternative: Utiliser une classe pour montrer/cacher les champs */
+.siege-selected .location-fields {
+  display: none;
 }
 
 .modal-footer {
